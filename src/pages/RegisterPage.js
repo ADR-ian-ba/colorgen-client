@@ -43,7 +43,7 @@ const RegisterPage = () => {
       email:email,
     }
 
-    fetch("http://localhost:4000/register",{
+    fetch("https://colorgen-api.onrender.com/register",{
       method:"POST",
       headers:{
         "Content-Type" : "application/json"
