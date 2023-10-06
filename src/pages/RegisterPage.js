@@ -86,13 +86,12 @@ const RegisterPage = () => {
       setText("sorry something went wrong")
       setIsLoading(false)
     })
-    }
-  else{
+  }else{
   setFail(true)
   setText("password doesent match")
   }
 
-   
+} 
   return (
     <main>
 
