@@ -89,6 +89,7 @@ const RegisterPage = () => {
   }else{
   setFail(true)
   setText("password doesent match")
+  setIsLoading(false)
   }
 
 } 
