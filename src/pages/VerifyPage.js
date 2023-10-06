@@ -30,7 +30,7 @@ const VerifyPage = () => {
   }
 
   function verify(){
-    fetch("http://localhost:4000/verify", {
+    fetch("https://colorgen-api.onrender.com/verify", {
       method: "POST",
       headers:{
         "Content-Type" : "application/json"
