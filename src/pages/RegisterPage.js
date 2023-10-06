@@ -36,7 +36,8 @@ const RegisterPage = () => {
     setIsLoading(true)
     e.preventDefault()
 
-    const data = {
+    if(password === passwordTwo){
+       const data = {
       username:username,
       password:password,
       passwordTwo:passwordTwo,
@@ -85,7 +86,13 @@ const RegisterPage = () => {
       setText("sorry something went wrong")
       setIsLoading(false)
     })
+    }
+  }else{
+  setFalse(true)
+  setText("password doesent match")
   }
+
+   
   return (
     <main>
 
