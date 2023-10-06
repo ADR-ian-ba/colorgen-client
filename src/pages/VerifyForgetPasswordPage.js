@@ -38,7 +38,7 @@ const VerifyForgetPasswordPage = () => {
         otp: otp
     }
 
-    fetch("http://localhost:4000/verifyforgetpassword", {
+    fetch("https://colorgen-api.onrender.com/verifyforgetpassword", {
         method:"POST",
         headers:{
             "Content-Type" : "application/json"
