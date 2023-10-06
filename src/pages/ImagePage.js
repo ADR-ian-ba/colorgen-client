@@ -108,7 +108,7 @@ const ImagePage = () => {
     setLoading(true)
 
 
-    fetch("http://localhost:4000/save",{
+    fetch("https://colorgen-api.onrender.com/save",{
       method: "POST",
       headers:{
         "Content-Type" : "application/json"
