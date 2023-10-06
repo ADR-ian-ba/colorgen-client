@@ -26,7 +26,7 @@ const ForgetPassword = () => {
     setIsLoading(true)
     const data = {email}
 
-    fetch("http://localhost:4000/forgetpassword", {
+    fetch("https://colorgen-api.onrender.com/forgetpassword", {
       method:"POST",
       headers:{
         "Content-Type" : "application/json"
