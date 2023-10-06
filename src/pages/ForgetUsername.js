@@ -28,7 +28,7 @@ const ForgetUsername = () => {
 
         const data= {email}
 
-        fetch("http://localhost:4000/forgetusername", {
+        fetch("https://colorgen-api.onrender.com/forgetusername", {
             method: "POST",
             headers:{
                 "Content-Type" : "application/json"
