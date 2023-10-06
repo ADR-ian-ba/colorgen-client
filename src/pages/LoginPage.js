@@ -37,7 +37,7 @@ const LoginPage = () => {
       password: password
     }
 
-    fetch("http://localhost:4000/login", {
+    fetch("https://colorgen-api.onrender.com/login", {
       method: "POST",
       headers:{
         "Content-Type": "application/json"
