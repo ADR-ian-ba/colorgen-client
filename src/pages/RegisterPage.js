@@ -3,6 +3,7 @@ import { NormalHeader, SnackFail, SnackSuccess } from "../components"
 import { useState, useEffect } from "react"
 import {ReactComponent as EyeOff} from "../assets/eye-off.svg"
 import {ReactComponent as EyeShow} from "../assets/eye-show.svg"
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
 
@@ -15,6 +16,7 @@ const RegisterPage = () => {
   const [text, setText] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
+  const navigate = useNavigate();
   let timer;
 
   useEffect(()=>{
@@ -66,11 +68,11 @@ const RegisterPage = () => {
         setIsLoading(false)
         if(data.exp === "user already verified"){
           setTimeout(()=>{
-            window.location.href="/login"
+            navigate('/login');
           }, 1000)
         }else{
           setTimeout(()=>{
-          window.location.href="/emailsent"
+          navigate('/emailsent');
         }, 1000)
         }
 
