@@ -63,11 +63,10 @@ const LoginPage = () => {
         setSuccess(true)
         setText(data.exp)
         setIsLoading(false)
-        
-        navigate('/generate');
-        // setTimeout(()=>{
-        //   window.location.href = "https://colorgen.onrender.com/generate"
-        // }, 1500)
+    
+        setTimeout(()=>{
+          navigate('/generate');
+        }, 1500)
 
       }else{
         setFail(true)
