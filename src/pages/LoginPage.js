@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { NormalHeader, SnackFail, SnackSuccess } from "../components"
 import { UserContext } from "../context/UserContext"
 import { useContext, useEffect, useState } from "react"
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [fail, setFail] = useState(false)
   const [text, setText] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const history = useHistory();
+ const navigate = useNavigate();
   let timer;
 
 
@@ -64,7 +64,7 @@ const LoginPage = () => {
         setText(data.exp)
         setIsLoading(false)
         
-        history.push('/generate');
+        navigate('/generate');
         // setTimeout(()=>{
         //   window.location.href = "https://colorgen.onrender.com/generate"
         // }, 1500)
