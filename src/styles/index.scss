@@ -1159,6 +1159,88 @@ header{
             margin-top: 5em;
 
             .every-each-pallete{
+
+
+                .view{
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 3;
+                }
+
+                .color-dialog{
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 80%;
+                    height: 35%;
+                    background-color: white;
+                    border-radius: 1rem;
+                    z-index: 4;
+                    overflow: hidden;
+
+                    svg{
+                        width: 2rem;
+                        float: right;
+                        margin: 1rem;
+                        border-radius: 6px;
+                        display: block;
+
+                        &:hover{
+                            background-color: rgba(0, 0, 0, 0.2);
+                        }
+                    }
+
+                    .view-palette-container{
+                        margin-top: 4rem;
+                        display: flex;
+
+
+                        .view-palette{
+                            flex-grow: 1;
+                            height: 15em;
+
+                            p{
+                                margin-top: 6.5rem;
+                                font-weight: bold;
+                                font-size: large;
+                            }
+
+                        }
+                    }
+
+
+                }
+
+                .snack-fail{
+                    position: fixed;
+                    bottom: 50px;
+                    left: 50px;
+                    background-color: rgb(194, 2, 2);
+                    padding: 25px 50px;
+                    border-radius: 10px;
+                    border: 3px solid rgb(255, 0, 0);
+                    color: white;
+                    letter-spacing: 1px;
+                    z-index: 2;
+                }
+            
+                .snack-success{
+                    position: fixed;
+                    bottom: 50px;
+                    left: 50px;
+                    background-color: rgb(10, 102, 0);
+                    padding: 25px 50px;
+                    border-radius: 10px;
+                    border: 3px solid rgb(51, 255, 0);
+                    color: white;
+                    letter-spacing: 1px;
+                    z-index: 2;
+                }
                 
                 .container-each{
                     width: inherit;
@@ -1214,6 +1296,55 @@ header{
 
     }
 }
+
+@media only screen and (max-width:880px){
+
+    .my-pallete{
+        .container{
+            .my-pallete-container{
+                .every-each-pallete{
+                    .color-dialog{
+                        height: auto;
+
+                        .view-palette-container{
+                            flex-direction: column;
+                            
+
+                            .view-palette{
+                                height: 4em;
+
+                                p{
+                                    margin-top: 1.5rem;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .view-palette-container{
+        .color-dialog{
+            height: 100rem;
+        }
+    }
+
+}
+
+@media only screen and (max-width:320px){
+    .my-pallete{
+        .container{
+            .my-pallete-container{
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    }
+
+}
+
+
 
 //ANCHOR - image
 .image-pallete{
