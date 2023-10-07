@@ -1,14 +1,32 @@
 import isDarkColor from 'is-dark-color'
 import { Tooltip } from '@mui/material';
 import { UserContext } from "../context/UserContext"
-import { useContext, useEffect} from "react"
+import { useContext, useEffect, useState } from "react"
+import { SnackFail, SnackSuccess } from "../components"
 
 const Pallete = (props) => {
+
+  const [success, setSuccess] = useState(false)
+  const [fail, setFail] = useState(false)
+  const [text, setText] = useState("")
+  const [view, setView] = useState(false)
   const {username, favPallete, setFavPallete} = useContext(UserContext)
+  let timer;
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
   };
+
+  useEffect(()=>{
+    if(fail || success){
+      setTimeout(()=>{
+        setFail(false)
+        setSuccess(false)
+        setText("")
+      },1000)
+      return () => clearTimeout(timer)
+    }
+  }, [success, fail])
 
   useEffect(() => {
     console.log('Updated favPallete:', favPallete);
@@ -20,7 +38,7 @@ const Pallete = (props) => {
       username: username
     }
 
-    fetch("https://colorgen-api.onrender.com/deletepallette", {
+    fetch("http://localhost:4000/deletepallette", {
       method: "POST",
       headers:{
         "Content-Type": "application/json"
@@ -56,12 +74,13 @@ const Pallete = (props) => {
       console.log(error)
     })
 
-  } 
-
-    function copy(){
-      navigator.clipboard.writeText(props.hexList) 
   }
 
+  function copy(){
+      navigator.clipboard.writeText(props.hexList)
+      setSuccess(true)
+      setText("palette copied") 
+  }
 
   return (
     <div className="every-each-pallete">
@@ -83,12 +102,12 @@ const Pallete = (props) => {
 
           </Tooltip>
 
-          {/* <Tooltip title="View" className="icon"arrow>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <Tooltip title="View" className="icon"arrow>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={()=> setView(!view)}>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="#000000"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C17.5915 3 22.2898 6.82432 23.6219 12C22.2898 17.1757 17.5915 21 12 21C6.40848 21 1.71018 17.1757 0.378052 12C1.71018 6.82432 6.40848 3 12 3ZM12 19C7.52443 19 3.73132 16.0581 2.45723 12C3.73132 7.94186 7.52443 5 12 5C16.4756 5 20.2687 7.94186 21.5428 12C20.2687 16.0581 16.4756 19 12 19Z" fill="#000000" />
             </svg>
-          </Tooltip> */}
+          </Tooltip>
 
           <Tooltip title="Delete" className="icon" onClick={deletePallette} arrow>
             <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon">
@@ -98,6 +117,32 @@ const Pallete = (props) => {
             </svg>
           </Tooltip>
         </div>
+
+        {view && 
+          <>
+            <div className='view'></div>
+            <div className='color-dialog'>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" onClick={()=>setView(!view)}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+
+              <div className='view-palette-container'>
+                {props.hexList.map((hex)=>(
+                  <div className="view-palette" style={{backgroundColor: hex}} onClick={() => copyToClipboard(hex)}>
+                    <p style={{ color : isDarkColor(hex) ? "white" : "black"}} >{hex}</p>
+                  </div>
+                ))}
+              </div>
+
+
+
+            </div>
+          </>
+
+        }
+
+        {success && <SnackSuccess text={text}/>}
+        {fail && <SnackFail text={text}/>}
 
 
     </div>
