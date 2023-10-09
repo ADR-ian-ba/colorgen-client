@@ -659,11 +659,9 @@ header nav ul .register:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .color-pallete .color h2 {
+  margin-top: 6rem;
   width: 110px;
   text-align: center;
-}
-.color-pallete .color p {
-  position: absolute;
 }
 .color-pallete .color .color-picker {
   z-index: 5;
