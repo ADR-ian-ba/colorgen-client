@@ -38,7 +38,7 @@ const Pallete = (props) => {
       username: username
     }
 
-    fetch("http://localhost:4000/deletepallette", {
+    fetch("https://colorgen-api.onrender.com/deletepallette", {
       method: "POST",
       headers:{
         "Content-Type": "application/json"
